@@ -1,12 +1,18 @@
+import { useState } from 'react';
 import './style.css';
+export const Product = ({ image, name, price, onAddToCart }) => {
+  const [count, setCount] = useState(0);
 
-export const Product = ({ image, name, price }) => {
+  const addCount = () => {
+    setCount(count + 1);
+    onAddToCart(price);
+  };
+
   return (
-    <div className="product">
+    <div className="product" onClick={addCount}>
       <img src={image} className="product__image" />
       <div className="product__body">
-        {name}: {price} Kč <br />
-        0 ks
+        {name}: {price} Kč <br /> {count} ks
       </div>
     </div>
   );
